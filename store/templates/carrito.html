@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Carrito</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f6; padding: 20px; }
+        .carrito-container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .item { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 15px 0; font-size: 1.1rem; }
+        .btn-volver { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #007bff; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="carrito-container">
+        <a href="{% url 'home' %}" class="btn-volver">⬅ Volver a la tienda</a>
+        <h2>🛒 Tu Carrito de Compras</h2>
+        
+        {% for item in items %}
+        <div class="item">
+            <span><strong>{{ item.product.name }}</strong> (Cantidad: {{ item.quantity }})</span>
+            <span style="color: #27ae60; font-weight: bold;">${{ item.product.price }} MXN</span>
+        </div>
+        {% empty %}
+        <p>Tu carrito está vacío.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
